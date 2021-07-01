@@ -1,6 +1,17 @@
-version: "3.9"  # optional since v1.27.0
+# Use root/example as user/password credentials
+version: '3.1'
+
 services:
-  web:
-    build: .
+
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+
+  adminer:
+    image: adminer
+    restart: always
     ports:
-      - "5000:5000"
+      - 8080:8080
