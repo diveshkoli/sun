@@ -1,17 +1,24 @@
-
-apiVersion: v1
-kind: Pod
-metadata:
-  name: rss-site
-  labels:
-    app: web
-spec:
-  containers:
-    - name: front-end
-      image: nginx
-      ports:
-        - containerPort: 80
-    - name: rss-reader
-      image: nickchase/rss-php-nginx:v1
-      ports:
-        - containerPort: 88
+---
+- hosts: sanjay
+  user: ansible
+  become: yes
+  vars:
+   - package: git
+  tasks:
+   - name: install java latest
+     yum:
+       name: java
+       state: latest
+   - name: install docker latest
+     yum:
+       name: docker
+       state: latest
+   - name: start
+     service:
+       name: docker
+       state: started
+   - name: install git
+     yum:
+       name: "{{ package }}"
+       state: latest
+   
