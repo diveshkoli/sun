@@ -3,6 +3,10 @@
   user: ansible
   become: yes
   tasks:
+    - name: install docker latest
+      yum:
+        name: docker
+        state: latest
     - name: Install docker and some dependencies
       yum:
         name: python3-pip
