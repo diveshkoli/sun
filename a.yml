@@ -2,23 +2,48 @@
 - hosts: sanjay
   user: ansible
   become: yes
-  vars:
-   - package: git
   tasks:
-   - name: install java latest
-     yum:
-       name: java
-       state: latest
-   - name: install docker latest
-     yum:
-       name: docker
-       state: latest
-   - name: start
-     service:
-       name: docker
-       state: started
-   - name: install git
-     yum:
-       name: "{{ package }}"
-       state: latest
-   
+    - name: Install docker and some dependencies
+      yum:
+        name: python3-pip
+        state: present
+
+    - name: Start docker service
+      service:
+        name: docker
+        state: started
+
+    - name: Install docker python module
+      pip:
+        name: docker
+    - name: Create Mysql container
+      docker_container:
+        name: mysql
+        image: mysql
+        state: started
+        recreate: yes
+        command: sleep infinity
+        
+    - name: Create mongo container
+      docker_container:
+        name: mongo
+        image: mongo
+        state: started
+        recreate: yes
+        command: sleep infinity
+    
+    - name: Create mariadb container
+      docker_container:
+        name: mariadb
+        image: mariadb
+        state: started
+        recreate: yes
+        command: sleep infinity
+        
+    - name: Create redis container
+      docker_container:
+        name: redis
+        image: redis
+        state: started
+        recreate: yes
+        command: sleep infinity
