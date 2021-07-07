@@ -3,7 +3,9 @@
 version: "3.9"
 services: 
   my-service:
-    image: ubuntu:latest
+    build: .
+    ports: 
+      - 7689:80
   
  
 
