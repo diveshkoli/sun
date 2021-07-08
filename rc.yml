@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: myapp
-          image: sonatype/nexus3
+          image: nginx:1.14.2
           env:
             - name: sanjay
               value: pro  
