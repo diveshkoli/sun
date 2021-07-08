@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp
+spec:
+  selector:
+    matchLabels:
+      app: myapp
+  template:
+    metadata:
+      labels:
+        app: myapp
+    volumes:
+      - name:  nginxvolume
+      hostPath:
+        path:  /mnt/volume   
+    spec:
+      containers:
+      - name: myapp
+        image: nginx
+        volumeMounts:
+          - name:  nginxvolume
+          mountPath:  /var/nginxvolume
+        resources:
+          limits:
+            memory: "100Mi"
+            cpu: "100m"
