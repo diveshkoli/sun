@@ -11,6 +11,24 @@
   <name>sanjay1</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
+  
+  <distributionManagement>
+    <repository>
+      <uniqueVersion>false</uniqueVersion>
+      <id>nexus</id>
+      <name>maven-releases</name>
+      <url>http://localhost:8081/repository/maven-releases/</url>
+      
+    </repository>
+    <snapshotRepository>
+      <uniqueVersion>true</uniqueVersion>
+      <id>nexus</id>
+      <name>maven-snapshots</name>
+      <url>http://localhost:8081/repository/maven-snapshots/</url>
+      
+    </snapshotRepository>
+    ...
+  </distributionManagement>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
